@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Pizza</title>
+</head>
+<body>
+<h2>Add Pizza</h2>
+
+<!-- Form for adding a new pizza -->
+<form action="/addPizza" method="post" enctype="multipart/form-data">
+    <!-- Input fields for pizza details -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price"  required><br><br>
+
+    <!-- File input for pizza picture -->
+    <label for="file">Picture:</label>
+    <input type="file" id="file" name="file" accept="image/*" required><br><br>
+
+    <!-- Submit button -->
+    <button type="submit">Add Pizza</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<h1>User List</h1>
+<table border="1">
+    <thead>
+    <tr>
+<!--        <th>ID</th>-->
+        <th>Username</th>
+        <th>Email</th>
+        <th>Action</th>
+        <th>Image</th>
+        <th>Message To Admin</th>
+        <th>Delete User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+<!--        <td th:text="${user.id}"></td>-->
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.isAuthenticated()}"></td>
+        <td>
+            <img th:if="${user.pictureName}" th:src="@{/images/{filename}(filename=${user.pictureName})}" style="max-width: 300px; max-height: 300px;">
+
+        </td>
+        <td th:text="${user.messageToAdmin}"></td>
+       <td>
+            <!-- Example of delete button -->
+            <form th:action="@{/admin/delete}" method="post">
+                <input type="hidden" name="userId" th:value="${user.id}">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

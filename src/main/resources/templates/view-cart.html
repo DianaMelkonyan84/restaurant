@@ -1,0 +1,89 @@
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>View Cart</title>-->
+
+<!--</head>-->
+<!--<body>-->
+
+<!--<h1>Shopping Cart</h1>-->
+
+<!--<table border="1">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Product name</th>-->
+<!--&lt;!&ndash;        <th>Product id</th>&ndash;&gt;-->
+<!--        <th>Type</th>-->
+<!--        <th>Quantity</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+
+<!--    <tr th:each="item : ${cartItems}">-->
+<!--        <td th:text="${item.name}"></td>-->
+<!--&lt;!&ndash;        <td th:text="${item.getProductId()}"></td>&ndash;&gt;-->
+<!--        <td th:text="${item.getType()}"></td>-->
+<!--        <td th:text="${item.quantity}"></td>-->
+<!--        <td>-->
+<!--            <form th:action="@{/delete}" method="post">-->
+<!--                <input type="hidden" name="cartItemId" th:value="${item.id}">-->
+<!--                <button type="submit">Delete</button>-->
+<!--            </form>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+
+
+<!--<p>Total Items: <span th:text="${totalItems}"></span></p>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Cart</title>
+</head>
+<body>
+
+<h1>Shopping Cart</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item, itemIndex : ${cartItems}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.type}"></td>
+        <td>
+            <!-- Form to reduce quantity -->
+            <form th:action="@{/reduceQuantity}" method="post">
+                <input type="hidden" name="cartItemId" th:value="${item.id}">
+                <button type="submit">Reduce Quantity</button>
+            </form>
+            <span th:text="${item.quantity}"></span> <!-- Display current quantity -->
+        </td>
+        <td>
+            <!-- Form to delete all instances of the item -->
+            <form th:action="@{/delete}" method="post">
+                <input type="hidden" name="cartItemId" th:value="${item.id}">
+                <button type="submit">Delete All</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Total Items: <span th:text="${totalItems}"></span></p>
+
+</body>
+</html>
